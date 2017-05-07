@@ -23,7 +23,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/BaseApp?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password:
+        password: 456852
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -93,7 +93,7 @@ jhipster:
     security:
         remember-me:
             # security key (this key should be unique for your application, and kept secret)
-            key: c6c82d6f8379b6b09ccd5fd1d7f4547cb90d9c19
+            key: 329cda485e16c9ce5bd2177e2b7183b0bc21f3e0
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: BaseApp@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL
