@@ -148,6 +148,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Joe",                  // firstName
             "Shmoe",                // lastName
+            null,
             "joe@example.com",      // email
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
@@ -177,6 +178,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Funky",                // firstName
             "One",                  // lastName
+            null,
             "funky@example.com",    // email
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
@@ -206,6 +208,7 @@ public class AccountResourceIntTest {
             "password",         // password
             "Bob",              // firstName
             "Green",            // lastName
+            null,
             "invalid",          // email <-- invalid
             true,               // activated
             "http://placehold.it/50x50", //imageUrl
@@ -235,6 +238,7 @@ public class AccountResourceIntTest {
             "123",              // password with only 3 digits
             "Bob",              // firstName
             "Green",            // lastName
+            null,
             "bob@example.com",  // email
             true,               // activated
             "http://placehold.it/50x50", //imageUrl
@@ -265,6 +269,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Alice",                // firstName
             "Something",            // lastName
+            null,
             "alice@example.com",    // email
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
@@ -277,7 +282,7 @@ public class AccountResourceIntTest {
 
         // Duplicate login, different email
         ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getFirstName(), validUser.getLastName(),
-            "alicejr@example.com", true, validUser.getImageUrl(), validUser.getLangKey(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getAuthorities());
+           null, "alicejr@example.com", true, validUser.getImageUrl(), validUser.getLangKey(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getAuthorities());
 
         // Good user
         restMvc.perform(
@@ -307,6 +312,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "John",                 // firstName
             "Doe",                  // lastName
+            null,
             "john@example.com",     // email
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
@@ -319,7 +325,7 @@ public class AccountResourceIntTest {
 
         // Duplicate email, different login
         ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
-            validUser.getEmail(), true, validUser.getImageUrl(), validUser.getLangKey(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getAuthorities());
+            null,validUser.getEmail(), true, validUser.getImageUrl(), validUser.getLangKey(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getAuthorities());
 
         // Good user
         restMvc.perform(
@@ -348,6 +354,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Bad",                  // firstName
             "Guy",                  // lastName
+            null,
             "badguy@example.com",   // email
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
@@ -378,6 +385,7 @@ public class AccountResourceIntTest {
             "funky-log!n",          // login <-- invalid
             "Funky",                // firstName
             "One",                  // lastName
+            null,
             "funky@example.com",    // email
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl

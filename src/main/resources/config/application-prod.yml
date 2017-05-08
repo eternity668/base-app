@@ -93,7 +93,7 @@ jhipster:
     security:
         remember-me:
             # security key (this key should be unique for your application, and kept secret)
-            key: 329cda485e16c9ce5bd2177e2b7183b0bc21f3e0
+            key: 91dd602706041cb675845d2d877e74a1569c4874
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: BaseApp@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL

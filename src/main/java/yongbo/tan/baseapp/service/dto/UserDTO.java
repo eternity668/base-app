@@ -28,6 +28,10 @@ public class UserDTO {
 
     @Size(max = 50)
     private String lastName;
+    
+    @Pattern(regexp=Constants.PHONE_REGEX)
+    @Size(min=11,max=11)
+    private String phone;
 
     @Email
     @Size(min = 5, max = 100)
@@ -57,14 +61,14 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this(user.getId(), user.getLogin(), user.getFirstName(), user.getLastName(),
-            user.getEmail(), user.getActivated(), user.getImageUrl(), user.getLangKey(),
+           user.getPhone(), user.getEmail(), user.getActivated(), user.getImageUrl(), user.getLangKey(),
             user.getCreatedBy(), user.getCreatedDate(), user.getLastModifiedBy(), user.getLastModifiedDate(),
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()));
     }
 
     public UserDTO(Long id, String login, String firstName, String lastName,
-        String email, boolean activated, String imageUrl, String langKey,
+        String phone,String email, boolean activated, String imageUrl, String langKey,
         String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate,
         Set<String> authorities) {
 
@@ -72,6 +76,7 @@ public class UserDTO {
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phone=phone;
         this.email = email;
         this.activated = activated;
         this.imageUrl = imageUrl;
@@ -107,6 +112,10 @@ public class UserDTO {
         return lastName;
     }
 
+    public String getPhone(){
+	return phone;
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -153,6 +162,7 @@ public class UserDTO {
             "login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
+            ", phone='" + phone + '\'' +
             ", email='" + email + '\'' +
             ", imageUrl='" + imageUrl + '\'' +
             ", activated=" + activated +
@@ -164,4 +174,6 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+    
+    
 }

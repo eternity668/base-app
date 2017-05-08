@@ -1,22 +1,34 @@
 package yongbo.tan.baseapp.domain;
 
-import yongbo.tan.baseapp.config.Constants;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import java.time.ZonedDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import yongbo.tan.baseapp.config.Constants;
 
 /**
  * A user.
@@ -51,7 +63,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(max = 50)
     @Column(name = "last_name", length = 50)
     private String lastName;
-
+    
+    @Pattern(regexp = Constants.PHONE_REGEX)
+    @Size(min=11,max=11)
+    @Column(length=11,unique=true)
+    private String phone;
+    
+    
     @Email
     @Size(min = 5, max = 100)
     @Column(length = 100, unique = true)
@@ -228,12 +246,22 @@ public class User extends AbstractAuditingEntity implements Serializable {
         return login.hashCode();
     }
 
+    
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
         return "User{" +
             "login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
+             ", phone='" + phone + '\'' +
             ", email='" + email + '\'' +
             ", imageUrl='" + imageUrl + '\'' +
             ", activated='" + activated + '\'' +
